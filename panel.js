@@ -41,4 +41,59 @@ tooltoggleBtn?.addEventListener("click", () => {
     tooltoggleBtn.style.background = "rgba(20, 20, 20, 0.2)";
     tooltoggleBtn.style.outline = "1.5px solid rgba(255, 255, 255, 0.30)";
   }
+
 });
+
+// ====================== TIMER ======================
+(function initTimer() {
+  function startTimer() {
+    const timerDisplay = document.getElementById("timer-tick");
+    if (!timerDisplay) {
+      // Retry after 100ms if element isn't ready
+      setTimeout(startTimer, 100);
+      return;
+    }
+
+    let seconds = 0;
+    setInterval(() => {
+      seconds++;
+      const mins = Math.floor(seconds / 60);
+      const secs = seconds % 60;
+      timerDisplay.textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+    }, 1000);
+
+    console.log("Timer started!");
+  }
+
+  startTimer();
+})();
+
+// ====================== FPS ======================
+(function initFPS() {
+  function startFPS() {
+    const fpsDisplay = document.getElementById("fps-tick");
+    if (!fpsDisplay) {
+      // Retry after 100ms if element isn't ready
+      setTimeout(startFPS, 100);
+      return;
+    }
+
+    let last = performance.now(), frames = 0;
+
+    function tick(now) {
+      frames++;
+      if (now - last >= 500) {
+        const fps = Math.round((frames * 1000) / (now - last));
+        fpsDisplay.textContent = 'FPS: ' + fps;
+        frames = 0;
+        last = now;
+      }
+      requestAnimationFrame(tick);
+    }
+
+    requestAnimationFrame(tick);
+    console.log("FPS counter started!");
+  }
+
+  startFPS();
+})();

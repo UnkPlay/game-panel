@@ -1,96 +1,11 @@
-<div id="title-card" style="
-  position: fixed;
-  top: 0;
-  right: 10px;
-  display: flex;
-  align-items: center;
-  outline: 2px solid rgba(0, 0, 0, 0.05);
-  background: rgba(0, 0, 0, 0.1);
-  color: rgba(255, 255, 255, 0.2);
-  padding: 2px;
-  border-radius: 0 0 10px 10px;
-  z-index: 10;
-  gap: 3px;
-  box-shadow: 0 0 13px rgba(0,0,0,0.2);
-  font-size: 12px;
-">Unknown Playground</div>
+<div id="title-card">Unknown Playground</div>
 
-<div id="button-container" style="
-  position: fixed;
-  top: 35px;
-  right: 0;
-  display: flex;
-  align-items: center;
-  outline: 2px solid rgba(0, 0, 0, 0.25);
-  background: rgba(255, 255, 255, 0.25);
-  padding: 2px;
-  border-radius: 10px 0 0 10px;
-  z-index: 10;
-  gap: 3px;
-  transition: transform .3s cubic-bezier(.2,.9,.3,1), background .25s linear, box-shadow .2s ease;
-  box-shadow: 0 0 13px rgba(0,0,0,0.6);
-">
-  <button class="glow-btn" id="toggle-btn" style="
-    background: rgba(0, 0, 0, 0.2);
-    color: rgba(255, 255, 255, 0.6);
-    border: none;
-    padding: 5px 8px;
-    cursor: pointer;
-    border-radius: 10px 0 0 10px;
-    font-size: 22px;
-  ">❮</button>
-  
-  <div id="game-error" class="error" style="
-    display: none;
-    background: rgba(255, 0, 0, 0.2);
-    color: rgba(255, 255, 255, 0.6);
-    border: none;
-    padding: 5px 5px;
-    cursor: pointer;
-    border-radius: 5px;
-    font-size: 20px;
-  ">Error: Couldn't Load</div>
-  
-  <button class="glow-btn" id="fullscreen-btn" style="
-    background: rgba(0, 0, 0, 0.2);
-    color: rgba(255, 255, 255, 0.6);
-    border: none;
-    padding: 5px 5px;
-    cursor: pointer;
-    border-radius: 2px;
-    font-size: 9px;
-  "><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M8 3H5a2 2 0 0 0-2 2v3"></path>
-        <path d="M16 3h3a2 2 0 0 1 2 2v3"></path>
-        <path d="M8 21H5a2 2 0 0 1-2-2v-3"></path>
-        <path d="M16 21h3a2 2 0 0 0 2-2v-3"></path>
-      </svg>
-      <div>FULL</div></button>
-  
-  <button class="glow-btn" id="tools-btn" style="
-    background: rgba(0, 0, 0, 0.2);
-    color: rgba(255, 255, 255, 0.6);
-    border: none;
-    padding: 5px 5px;
-    cursor: pointer;
-    border-radius: 2px;
-    font-size: 9px;
-  "><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="3"></circle>
-        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-      </svg>
-      <div>TOOLS</div></button>
-
-  <button class="glow-btn" id="back-btn" style="
-    background: rgba(0, 0, 0, 0.2);
-    color: rgba(255, 255, 255, 0.6);
-    border: none;
-    padding: 5px 5px;
-    cursor: pointer;
-    border-radius: 2px;
-    font-size: 9px;
-  "><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="18" y1="6" x2="6" y2="18"></line>
-        <line x1="6" y1="6" x2="18" y2="18"></line>
-      </svg>
-      <div>EXIT</div></button>
+<div id="button-container">
+  <button class="glow-btn" id="toggle-btn">❮</button>
+  <div id="game-error" class="error">Error: Couldn't Load</div>
+  <button class="glow-btn" id="fullscreen-btn">
+    FULL
+  </button>
+  <button class="glow-btn" id="tools-btn">TOOLS</button>
+  <button class="glow-btn" id="back-btn">EXIT</button>
+</div>

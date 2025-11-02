@@ -1,26 +1,30 @@
-// panel-loader.js
-(async function() {
-  const baseURL = 'https://cdn.jsdelivr.net/gh/UnkPlay/game-panel@main/';
+(function() {
+    const panelBaseURL = "https://raw.githubusercontent.com/UnkPlay/game-panel/main/";
 
-  // 1. Load CSS
-  const link = document.createElement('link');
-  link.rel = 'stylesheet';
-  link.href = baseURL + 'panel.css';
-  document.head.appendChild(link);
+    // Load CSS
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = panelBaseURL + "panel.css";
+    document.head.appendChild(link);
 
-  // 2. Load HTML
-  try {
-    const html = await fetch(baseURL + 'panel.html').then(r => r.text());
-    const container = document.createElement('div');
-    container.id = 'panel-container';
-    container.innerHTML = html;
-    document.body.appendChild(container);
-  } catch(e) {
-    console.error('Failed to load panel HTML:', e);
-  }
+    // Load HTML
+    fetch(panelBaseURL + "panel.html")
+        .then(response => response.text())
+        .then(html => {
+            const div = document.createElement("div");
+            div.id = "game-panel-container";
+            div.innerHTML = html;
+            div.style.position = "fixed"; // Centralize panel
+            div.style.top = "50%";
+            div.style.left = "50%";
+            div.style.transform = "translate(-50%, -50%)";
+            div.style.zIndex = 9999; // Always on top
+            document.body.appendChild(div);
 
-  // 3. Load JS
-  const script = document.createElement('script');
-  script.src = baseURL + 'panel.js';
-  document.body.appendChild(script);
+            // Load JS after HTML is injected
+            const script = document.createElement("script");
+            script.src = panelBaseURL + "panel.js";
+            document.body.appendChild(script);
+        })
+        .catch(err => console.error("Failed to load game panel:", err));
 })();

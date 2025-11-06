@@ -98,6 +98,8 @@ tooltoggleBtn?.addEventListener("click", () => {
   startFPS();
 })();
 
+// Report
+
 function initReportModal() {
   const reportContainer = document.getElementById("reportContainer");
   const openBtn = document.getElementById("report-btn"); 
@@ -165,4 +167,5 @@ function initReportModal() {
 
 // Call this **after panel HTML (and modal) is injected**
 initReportModal();
+
 

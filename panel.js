@@ -28,31 +28,29 @@ toggleBtn?.addEventListener("click", () => {
 
 // Report
 
-document.addEventListener("DOMContentLoaded", () => {
+function initReportPanel() {
   const reportContainer = document.getElementById("reportContainer");
-  const openBtn = document.getElementById("report-btn"); 
+  const openBtn = document.getElementById("report-btn");
   const closeBtn = document.getElementById("closeReport");
   const submitBtn = document.getElementById("submitReportBtn");
   const issueSelect = document.getElementById("reportIssue");
   const commentsBox = document.getElementById("reportComments");
 
-  // Open the report box
+  if (!reportContainer || !openBtn || !closeBtn || !submitBtn) return;
+
   openBtn.addEventListener("click", () => {
     reportContainer.style.display = "flex";
     submitBtn.classList.remove("enabled");
   });
 
-  // Close the report box
   closeBtn.addEventListener("click", () => {
     reportContainer.style.display = "none";
   });
 
-  // Close if clicking outside the box
   reportContainer.addEventListener("click", (e) => {
     if (e.target === reportContainer) reportContainer.style.display = "none";
   });
 
-  // Enable/disable submit button based on issue selection
   issueSelect.addEventListener("change", () => {
     if (issueSelect.value) {
       submitBtn.classList.add("enabled");
@@ -61,9 +59,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Submit report to Discord webhook
   submitBtn.addEventListener("click", async () => {
-    if (!issueSelect.value) return; // Safety check
+    if (!issueSelect.value) return;
 
     const reportData = {
       issue: issueSelect.value,
@@ -73,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     try {
-      await fetch("https://discord.com/api/webhooks/1435821043565727746/jqxCJPw3pb7tmAjVfv5egxa9Zc5r6wnSnZ4y_1kRSwrKg8Rs728sU3hfIZbQj_RWb7Gv", {
+      await fetch("YOUR_DISCORD_WEBHOOK_URL", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ 
@@ -84,7 +81,6 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("Thanks! Your report has been submitted.");
       reportContainer.style.display = "none";
 
-      // Reset inputs
       issueSelect.value = "";
       commentsBox.value = "";
       submitBtn.classList.remove("enabled");
@@ -94,7 +90,10 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error(error);
     }
   });
-});
+}
+
+window.addEventListener("DOMContentLoaded", initReportPanel);
+
 
 // Tools toggle
 const toolspanel = document.getElementById("tools-container");
@@ -167,4 +166,5 @@ tooltoggleBtn?.addEventListener("click", () => {
 
   startFPS();
 })();
+
 

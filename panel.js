@@ -26,84 +26,6 @@ toggleBtn?.addEventListener("click", () => {
   }
 });
 
-// Report
-
-(function initReportPanel() {
-  const waitForElement = (selector, callback) => {
-    const el = document.querySelector(selector);
-    if (el) return callback(el);
-    setTimeout(() => waitForElement(selector, callback), 50);
-  };
-
-  // Wait for the report button
-  waitForElement("#report-btn", (openBtn) => {
-    const reportContainer = document.getElementById("reportContainer");
-    const closeBtn = document.getElementById("closeReport");
-    const submitBtn = document.getElementById("submitReportBtn");
-    const issueSelect = document.getElementById("reportIssue");
-    const commentsBox = document.getElementById("reportComments");
-
-    // Open the report panel
-    openBtn.addEventListener("click", () => {
-      reportContainer.style.display = "flex";
-      submitBtn.classList.remove("enabled");
-    });
-
-    // Close the panel
-    closeBtn.addEventListener("click", () => {
-      reportContainer.style.display = "none";
-    });
-
-    // Click outside closes panel
-    reportContainer.addEventListener("click", (e) => {
-      if (e.target === reportContainer) reportContainer.style.display = "none";
-    });
-
-    // Enable/disable submit button based on dropdown
-    issueSelect.addEventListener("change", () => {
-      if (issueSelect.value) {
-        submitBtn.classList.add("enabled");
-      } else {
-        submitBtn.classList.remove("enabled");
-      }
-    });
-
-    // Submit report to Discord
-    submitBtn.addEventListener("click", async () => {
-      if (!issueSelect.value) return;
-
-      const reportData = {
-        issue: issueSelect.value,
-        comments: commentsBox.value.trim(),
-        page: window.location.href,
-        time: new Date().toISOString()
-      };
-
-      try {
-        await fetch("https://discord.com/api/webhooks/1435821043565727746/jqxCJPw3pb7tmAjVfv5egxa9Zc5r6wnSnZ4y_1kRSwrKg8Rs728sU3hfIZbQj_RWb7Gv", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            content: `🚨 **Issue reported**\n**Issue:** ${reportData.issue}\n**Comments:** ${reportData.comments || "None"}\n**Page:** ${reportData.page}\n**Time:** ${reportData.time}`
-          })
-        });
-
-        alert("Thanks! Your report has been submitted.");
-        reportContainer.style.display = "none";
-
-        issueSelect.value = "";
-        commentsBox.value = "";
-        submitBtn.classList.remove("enabled");
-
-      } catch (err) {
-        alert("Error sending report. Check your webhook URL.");
-        console.error(err);
-      }
-    });
-  });
-})();
-
-
 // Tools toggle
 const toolspanel = document.getElementById("tools-container");
 const tooltoggleBtn = document.getElementById("tools-btn");
@@ -175,6 +97,7 @@ tooltoggleBtn?.addEventListener("click", () => {
 
   startFPS();
 })();
+
 
 
 

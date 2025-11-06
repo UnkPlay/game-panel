@@ -1,3 +1,28 @@
+<div id="reportContainer">
+  <div class="report-box">
+    <span id="closeReport">×</span>
+    <h3 style="text-align:center; margin-top:0;">Report Game Issue</h3>
+
+    <div style="margin-bottom: 15px;">
+      <label for="reportIssue">Issue</label>
+      <select id="reportIssue">
+        <option value="">-- Select an issue --</option>
+        <option value="Game not loading">Game not loading</option>
+        <option value="Controls not working">Controls not working</option>
+        <option value="Graphics or sound issue">Graphics or sound issue</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+
+    <div style="margin-bottom: 15px;">
+      <label for="reportComments">Comments (Optional)</label>
+      <textarea id="reportComments" placeholder="Describe the problem..."></textarea>
+    </div>
+
+    <button id="submitReportBtn">Report</button>
+  </div>
+</div>
+
 <div id="title-card" style="
   position: fixed;
   top: 0;
@@ -94,3 +119,4 @@
         <line x1="6" y1="6" x2="18" y2="18"></line>
       </svg>
       <div>EXIT</div></button>
+

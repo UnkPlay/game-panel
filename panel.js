@@ -143,7 +143,7 @@ function initReportModal() {
     };
 
     try {
-      await fetch("https://discord.com/api/webhooks/…", {
+      await fetch("https://discord.com/api/webhooks/1435821043565727746/jqxCJPw3pb7tmAjVfv5egxa9Zc5r6wnSnZ4y_1kRSwrKg8Rs728sU3hfIZbQj_RWb7Gv", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -167,5 +167,6 @@ function initReportModal() {
 
 // Call this **after panel HTML (and modal) is injected**
 initReportModal();
+
 
 

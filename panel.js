@@ -98,7 +98,7 @@ tooltoggleBtn?.addEventListener("click", () => {
   startFPS();
 })();
 
-document.addEventListener("DOMContentLoaded", () => {
+function initReportModal() {
   const reportContainer = document.getElementById("reportContainer");
   const openBtn = document.getElementById("report-btn"); 
   const closeBtn = document.getElementById("closeReport");
@@ -106,14 +106,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const issueSelect = document.getElementById("reportIssue");
   const commentsBox = document.getElementById("reportComments");
 
+  if (!reportContainer || !openBtn) return;
+
   // Open modal
-  openBtn?.addEventListener("click", () => {
+  openBtn.addEventListener("click", () => {
     reportContainer.style.display = "flex";
     submitBtn.classList.remove("enabled");
   });
 
   // Close modal
-  closeBtn?.addEventListener("click", () => {
+  closeBtn.addEventListener("click", () => {
     reportContainer.style.display = "none";
   });
 
@@ -122,13 +124,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.target === reportContainer) reportContainer.style.display = "none";
   });
 
-  // Enable submit button when issue selected
+  // Enable submit button
   issueSelect.addEventListener("change", () => {
-    if (issueSelect.value) {
-      submitBtn.classList.add("enabled");
-    } else {
-      submitBtn.classList.remove("enabled");
-    }
+    submitBtn.classList.toggle("enabled", !!issueSelect.value);
   });
 
   // Submit to Discord webhook
@@ -143,7 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     try {
-      await fetch("https://discord.com/api/webhooks/1435821043565727746/jqxCJPw3pb7tmAjVfv5egxa9Zc5r6wnSnZ4y_1kRSwrKg8Rs728sU3hfIZbQj_RWb7Gv", {
+      await fetch("https://discord.com/api/webhooks/…", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -163,4 +161,8 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error(error);
     }
   });
-});
+}
+
+// Call this **after panel HTML (and modal) is injected**
+initReportModal();
+

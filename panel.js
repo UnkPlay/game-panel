@@ -16,7 +16,7 @@ let collapsed = false;
 toggleBtn?.addEventListener("click", () => {
   collapsed = !collapsed;
   if (collapsed) {
-    panel.style.transform = "translateX(78%)"; 
+    panel.style.transform = "translateX(85%)"; 
     panel.style.background = "rgba(255, 255, 255, 0.1)";
     toggleBtn.innerHTML = "&#10095;";
   } else {
@@ -167,6 +167,7 @@ function initReportModal() {
 
 // Call this **after panel HTML (and modal) is injected**
 initReportModal();
+
 
 
 
